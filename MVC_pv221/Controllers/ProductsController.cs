@@ -19,5 +19,12 @@ namespace MVC_pv221.Controllers
 
             return View(products);
         }
+
+        public IActionResult Details(int id)
+        {
+            // get product by ID from the db
+
+            return View(id);
+        }
     }
 }
