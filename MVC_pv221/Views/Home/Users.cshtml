@@ -1,11 +1,20 @@
-﻿@{
+﻿@model List<User>;
+@{
     //Layout = null;
 }
 
 <h2>User List</h2>
 
-<ul>
-    <li>Alex - faergea@gmail.com</li>
-    <li>Sofia - vivi@gmail.com</li>
-    <li>Eugen - programmer@gmail.com</li>
-</ul>
+@if(Model.Count > 0)
+{
+    <ul>
+        @foreach (var i in Model)
+        {
+            <li>[@i.Id] - @i.Login</li>
+        }
+    </ul>
+}
+else
+{
+    <p>No users!</p>
+}

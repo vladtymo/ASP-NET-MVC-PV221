@@ -6,10 +6,11 @@ namespace MVC_pv221.Controllers
 {
     public class HomeController : Controller
     {
-      
+        private List<User> users = new();
         public HomeController()
         {
-           
+            users.Add(new User() { Id = 20, Login = "BlablaBob"});
+            users.Add(new User() { Id = 44, Login = "BlablaMax" });
         }
 
         public IActionResult Index()
@@ -25,7 +26,7 @@ namespace MVC_pv221.Controllers
         }
         public IActionResult Users()
         {
-            return View(); // ~/Views/Home/Users.cshtml
+            return View(users); // ~/Views/Home/Users.cshtml
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
