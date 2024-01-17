@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using MVC_pv221.Data;
 using MVC_pv221.Models;
 using System.Diagnostics;
 
@@ -7,6 +8,7 @@ namespace MVC_pv221.Controllers
     public class HomeController : Controller
     {
         private List<User> users = new();
+
         public HomeController()
         {
             users.Add(new User() { Id = 20, Login = "BlablaBob"});

@@ -7,6 +7,8 @@ namespace MVC_pv221.Data
     {
         public DbSet<Product> Products { get; set; }
 
+        public ShopDbContext(DbContextOptions options) : base(options) { }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -21,12 +23,13 @@ namespace MVC_pv221.Data
                 new Product() { Id = 6, Name = "MacBook Pro 2019", Category = "Electronics", Discount = 10, InStock = true, Price = 1200, ImageUrl = "https://newtime.ua/image/import/catalog/mac/macbook_pro/MacBook-Pro-16-2019/MacBook-Pro-16-Space-Gray-2019/MacBook-Pro-16-Space-Gray-00.webp" }
             });
         }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            base.OnConfiguring(optionsBuilder);
 
-            var str = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=ShopMvcPV221;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
-            optionsBuilder.UseSqlServer(str);
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    base.OnConfiguring(optionsBuilder);
+
+        //    var str = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=ShopMvcPV221;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
+        //    optionsBuilder.UseSqlServer(str);
+        //}
     }
 }

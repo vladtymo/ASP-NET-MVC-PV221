@@ -5,10 +5,11 @@ namespace MVC_pv221.Controllers
 {
     public class ProductsController : Controller
     {
-        private ShopDbContext context;
-        public ProductsController()
+        private readonly ShopDbContext context;
+
+        public ProductsController(ShopDbContext context)
         {
-            context = new ShopDbContext();
+            this.context = context;
         }
 
         public IActionResult Index()

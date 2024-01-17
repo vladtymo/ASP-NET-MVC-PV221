@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using MVC_pv221.Data;
+
 namespace MVC_pv221
 {
     public class Program
@@ -5,9 +8,12 @@ namespace MVC_pv221
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            var connStr = builder.Configuration.GetConnectionString("LocalDb");
 
             // Add services to the container.
+            // DI - Dependency Injection
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<ShopDbContext>(opts => opts.UseSqlServer(connStr));
 
             var app = builder.Build();
 
