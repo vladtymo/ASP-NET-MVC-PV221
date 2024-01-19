@@ -23,8 +23,24 @@ namespace MVC_pv221.Controllers
         public IActionResult Details(int id)
         {
             // get product by ID from the db
+            var product = context.Products.Find(id);
 
-            return View(id);
+            if (product == null) return NotFound();
+
+            return View(product);
+        }
+
+        public IActionResult Delete(int id)
+        {
+            // delete product by id
+            var product = context.Products.Find(id);
+
+            if (product == null) return NotFound();
+
+            context.Remove(product);
+            context.SaveChanges();
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }
