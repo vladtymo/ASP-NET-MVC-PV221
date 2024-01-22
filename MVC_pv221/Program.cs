@@ -1,3 +1,5 @@
+using FluentValidation.AspNetCore;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using MVC_pv221.Data;
 
@@ -14,6 +16,12 @@ namespace MVC_pv221
             // DI - Dependency Injection
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext<ShopDbContext>(opts => opts.UseSqlServer(connStr));
+
+            builder.Services.AddFluentValidationAutoValidation();
+            // enable client-side validation
+            builder.Services.AddFluentValidationClientsideAdapters();
+            // Load an assembly reference rather than using a marker type.
+            builder.Services.AddValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
 
             var app = builder.Build();
 

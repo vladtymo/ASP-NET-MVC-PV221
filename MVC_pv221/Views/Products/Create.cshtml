@@ -5,26 +5,32 @@
     <div class="col-md-12">
         <label asp-for=Name class="form-label">Name</label>
         <input asp-for=Name type="text" class="form-control" placeholder="Enter name">
+        <span asp-validation-for="Name" class="form-text text-danger"></span>
     </div>
     <div class="col-md-4">
         <label asp-for=Price class="form-label">Price</label>
         <input asp-for=Price type="number" min="0" class="form-control" placeholder="Enter price ($)">
+        <span asp-validation-for="Price" class="form-text text-danger"></span>
     </div>
     <div class="col-2">
         <label asp-for=Discount class="form-label">Discount</label>
         <input asp-for=Discount type="number" min="0" class="form-control" placeholder="Enter discount (%)">
+        <span asp-validation-for="Discount" class="form-text text-danger"></span>
     </div>
     <div class="col-6">
         <label asp-for=Category class="form-label">Category</label>
         <input asp-for=Category type="text" class="form-control" placeholder="Enter category">
+        <span asp-validation-for="Category" class="form-text text-danger"></span>
     </div>
     <div class="col-12">
         <label asp-for=ImageUrl class="form-label">Image URL</label>
         <input asp-for=ImageUrl type="url" class="form-control" placeholder="Enter image URL">
+        <span asp-validation-for="ImageUrl" class="form-text text-danger"></span>
     </div>
     <div class="col-12">
         <label asp-for=Description class="form-label">Description</label>
         <textarea asp-for=Description class="form-control" rows="3" placeholder="Enter description"></textarea>
+        <span asp-validation-for="Description" class="form-text text-danger"></span>
     </div>
    
     @* <div class="col-md-4">
