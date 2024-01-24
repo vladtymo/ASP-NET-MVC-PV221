@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using MVC_pv221.Data;
 using MVC_pv221.Data.Entities;
 
@@ -13,16 +15,25 @@ namespace MVC_pv221.Controllers
             this.context = context;
         }
 
+        private void LoadCategories()
+        {
+            // Send temporary data to view
+            // 1: TempData[key] = value
+            // 2: ViewBag.Key = value
+            ViewBag.Categories = new SelectList(context.Categories.ToList(), nameof(Category.Id), nameof(Category.Name));
+        }
+
         public IActionResult Index()
         {
             // get all products from the db
-            var products = context.Products.ToList();
+            var products = context.Products.Include(x => x.Category).ToList();
 
             return View(products);
         }
 
         public IActionResult Create()
         {
+            LoadCategories();
             return View();
         }
 
@@ -32,6 +43,7 @@ namespace MVC_pv221.Controllers
             // TODO: add validation
             if (!ModelState.IsValid) 
             {
+                LoadCategories();
                 return View();
             }
 
@@ -45,6 +57,7 @@ namespace MVC_pv221.Controllers
         {
             // get product by ID from the db
             var product = context.Products.Find(id);
+            context.Entry(product).Reference(x => x.Category).Load();
 
             if (product == null) return NotFound();
 

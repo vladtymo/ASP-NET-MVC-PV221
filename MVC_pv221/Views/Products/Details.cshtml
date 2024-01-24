@@ -14,7 +14,7 @@
             </div>
         }
         <h5 class="card-title fs-1">@Model.Name</h5>
-        <p class="card-text fs-4">@Model.Price$ - @Model.Category</p>
+        <p class="card-text fs-4">@Model.Price$ - @Model.Category?.Name</p>
         <a href="#" class="btn btn-success my-3">Buy</a>
         <div>
             <img src="@Model.ImageUrl" alt="Product Image" />

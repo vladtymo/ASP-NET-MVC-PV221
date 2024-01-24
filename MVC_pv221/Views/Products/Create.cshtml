@@ -12,15 +12,16 @@
         <input asp-for=Price type="number" min="0" class="form-control" placeholder="Enter price ($)">
         <span asp-validation-for="Price" class="form-text text-danger"></span>
     </div>
-    <div class="col-2">
+    <div class="col-md-2">
         <label asp-for=Discount class="form-label">Discount</label>
         <input asp-for=Discount type="number" min="0" class="form-control" placeholder="Enter discount (%)">
         <span asp-validation-for="Discount" class="form-text text-danger"></span>
     </div>
-    <div class="col-6">
-        <label asp-for=Category class="form-label">Category</label>
-        <input asp-for=Category type="text" class="form-control" placeholder="Enter category">
-        <span asp-validation-for="Category" class="form-text text-danger"></span>
+    <div class="col-md-6">
+        <label asp-for=CategoryId class="form-label">State</label>
+        <select asp-for=CategoryId asp-items=ViewBag.Categories class="form-select">
+            <option disabled selected>Choose...</option>
+        </select>
     </div>
     <div class="col-12">
         <label asp-for=ImageUrl class="form-label">Image URL</label>
@@ -32,14 +33,6 @@
         <textarea asp-for=Description class="form-control" rows="3" placeholder="Enter description"></textarea>
         <span asp-validation-for="Description" class="form-text text-danger"></span>
     </div>
-   
-    @* <div class="col-md-4">
-        <label for="inputState" class="form-label">State</label>
-        <select id="inputState" class="form-select">
-            <option selected>Choose...</option>
-            <option>...</option>
-        </select>
-    </div> *@
 
     <div class="col-12">
         <div class="form-check">
@@ -50,10 +43,10 @@
         </div>
     </div>
 
-    <div class="col-6">
+    <div class="col-md-6">
         <a asp-action="Index" class="btn btn-dark w-100">Back</a>
     </div>
-    <div class="col-6">
+    <div class="col-md-6">
         <button type="submit" class="btn btn-success w-100">Create New Product</button>
     </div>
 </form>
