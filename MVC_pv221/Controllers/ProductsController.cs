@@ -40,7 +40,7 @@ namespace MVC_pv221.Controllers
         [HttpPost]
         public IActionResult Create(Product model)
         {
-            // TODO: add validation
+            // model validation
             if (!ModelState.IsValid) 
             {
                 LoadCategories();
@@ -48,6 +48,30 @@ namespace MVC_pv221.Controllers
             }
 
             context.Products.Add(model);
+            context.SaveChanges();
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Edit(int id)
+        {
+            var product = context.Products.Find(id);
+            if (product == null) return NotFound();
+
+            LoadCategories();
+            return View(product);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Product model)
+        {
+            if (!ModelState.IsValid)
+            {
+                LoadCategories();
+                return View();
+            }
+
+            context.Products.Update(model);
             context.SaveChanges();
 
             return RedirectToAction(nameof(Index));

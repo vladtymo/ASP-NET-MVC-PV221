@@ -1,11 +1,16 @@
 ﻿@model Product;
 
-<div class="text-start">
+@* <div class="text-start">
     <a href="@ViewBag.ReturnUrl" class="btn btn-dark my-3">Back</a>
-</div>
+</div> *@
 
 <div class="card text-center details-card">
-    <h5 class="card-header">Product Information</h5>
+    <h5 class="card-header">
+        <a href="@ViewBag.ReturnUrl" class="btn btn-dark">
+            <i class="bi bi-arrow-left"></i>
+        </a>
+        <span>Product Information</span>
+    </h5>
     <div class="card-body">
         @if(Model.Discount > 0)
         {
@@ -16,7 +21,7 @@
         <h5 class="card-title fs-1">@Model.Name</h5>
         <p class="card-text fs-4">@Model.Price$ - @Model.Category?.Name</p>
         <a href="#" class="btn btn-success my-3">Buy</a>
-        <div>
+        <div class="image-block">
             <img src="@Model.ImageUrl" alt="Product Image" />
         </div>
         <p class="card-text">@Model.Description</p>

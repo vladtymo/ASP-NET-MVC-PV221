@@ -49,6 +49,9 @@
                         <a class="btn btn-dark" asp-action="Details" asp-route-id="@i.Id" asp-route-returnUrl="@Context.Request.Path">
                             <i class="bi bi-info-lg"></i>
                         </a>
+                        <a class="btn btn-warning" asp-action="Edit" asp-route-id="@i.Id">
+                            <i class="bi bi-pencil-fill"></i>
+                        </a>
                         <a class="btn btn-danger" asp-action="Delete" asp-route-id="@i.Id">
                             <i class="bi bi-trash3-fill"></i>
                         </a>

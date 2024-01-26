@@ -21,10 +21,19 @@ body {
   margin-bottom: 60px;
 }
 
+.details-card .card-header {
+    display: grid;
+    grid-template-columns: 40px 1fr 40px;
+    align-items: center;
+}
+
+.details-card .image-block {
+    margin: 16px;
+}
 .details-card img {
-    width: 50%;
+    max-width: 750px;
+    width: 100%;
     object-fit: contain;
-    margin: 20px;
     border-radius: 10px;
 }
 
