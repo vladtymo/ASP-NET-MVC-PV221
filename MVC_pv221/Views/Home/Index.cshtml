@@ -1,10 +1,21 @@
-﻿<div class="text-center">
+﻿@model List<Product>;
+
+<div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+        @foreach (var i in Model)
+        {
+            <div class="col">
+               <partial name="_ProductCardPartial" model="@i" />
+            </div>
+        }
+    </div>
 </div>
 
 @* Razor Syntax: @{ code } if for switch ... *@
-<div class="text-center">
+@* <div class="text-center">
     @if(DateTime.Now.Minute % 2 == 0)
     {
         <p>Minute is even!</p>
@@ -18,7 +29,7 @@
     {
         <img width="100" src="https://media.licdn.com/dms/image/C4E12AQGjd1UZI__MZw/article-cover_image-shrink_600_2000/0/1520161860171?e=2147483647&v=beta&t=jaE_o4TZKY80rPrT_wfY5--OzWwYVpEI_tP2qDCuICU" />
     }
-</div>
+</div> *@
 
 @section Scripts
 {

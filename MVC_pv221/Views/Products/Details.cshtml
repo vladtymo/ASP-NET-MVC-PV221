@@ -1,10 +1,10 @@
 ﻿@model Product;
 
 <div class="text-start">
-    <a asp-action="Index" class="btn btn-dark my-3">Back</a>
+    <a href="@ViewBag.ReturnUrl" class="btn btn-dark my-3">Back</a>
 </div>
 
-<div class="card text-center">
+<div class="card text-center details-card">
     <h5 class="card-header">Product Information</h5>
     <div class="card-body">
         @if(Model.Discount > 0)

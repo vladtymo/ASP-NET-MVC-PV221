@@ -21,9 +21,25 @@ body {
   margin-bottom: 60px;
 }
 
-.card img {
+.details-card img {
     width: 50%;
     object-fit: contain;
     margin: 20px;
     border-radius: 10px;
+}
+
+.home-card img {
+    height: 200px;
+    object-fit: contain;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.home-card a {
+    color: black;
+    text-decoration: none;
+}
+.home-card a:hover {
+    color: darkgray;
+    text-decoration: underline;
 }

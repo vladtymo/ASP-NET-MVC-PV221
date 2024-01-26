@@ -1,0 +1,25 @@
+﻿@model Product;
+
+<div class="card h-100 home-card">
+    <a asp-controller="Products" asp-action="Details" asp-route-id="@Model.Id" asp-route-returnUrl="@Context.Request.Path">
+        <img src="@Model.ImageUrl" class="card-img-top" alt="Product Image">
+    </a>
+    <div class="card-body">
+        <h5 class="card-title">
+            <a asp-controller="Products" asp-action="Details" asp-route-id="@Model.Id" asp-route-returnUrl="@Context.Request.Path">@Model.Name</a>
+        </h5>
+        <p class="card-text">
+            @Model.Price$
+            @if (Model.Discount > 0)
+            {
+                <span class="badge bg-danger">SALE</span>
+            }
+            <br />
+            @Model.Category?.Name
+        </p>
+        <div>
+            <button type="button" class="btn btn-primary">Add to Cart</button>
+            <button type="button" class="btn btn-success">Buy Now</button>
+        </div>
+    </div>
+</div>

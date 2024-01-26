@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using MVC_pv221.Data;
 using MVC_pv221.Models;
 using System.Diagnostics;
@@ -8,16 +9,19 @@ namespace MVC_pv221.Controllers
     public class HomeController : Controller
     {
         private List<User> users = new();
+        private readonly ShopDbContext context;
 
-        public HomeController()
+        public HomeController(ShopDbContext context)
         {
             users.Add(new User() { Id = 20, Login = "BlablaBob"});
             users.Add(new User() { Id = 44, Login = "BlablaMax" });
+            this.context = context;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var products = context.Products.Include(x => x.Category).ToList();
+            return View(products);
         }
 
         public IActionResult Privacy()

@@ -53,14 +53,16 @@ namespace MVC_pv221.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult Details(int id)
+        public IActionResult Details(int id, string? returnUrl)
         {
             // get product by ID from the db
             var product = context.Products.Find(id);
-            context.Entry(product).Reference(x => x.Category).Load();
-
             if (product == null) return NotFound();
 
+            // load related entity
+            context.Entry(product).Reference(x => x.Category).Load();
+
+            ViewBag.ReturnUrl = returnUrl;
             return View(product);
         }
 
