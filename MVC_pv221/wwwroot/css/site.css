@@ -31,7 +31,7 @@ body {
     margin: 16px;
 }
 .details-card img {
-    max-width: 750px;
+    max-width: 500px;
     width: 100%;
     object-fit: contain;
     border-radius: 10px;

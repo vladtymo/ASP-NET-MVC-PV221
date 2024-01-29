@@ -1,4 +1,4 @@
-﻿@model Product;
+﻿@model ProductDto;
 
 @* <div class="text-start">
     <a href="@ViewBag.ReturnUrl" class="btn btn-dark my-3">Back</a>
@@ -19,7 +19,7 @@
             </div>
         }
         <h5 class="card-title fs-1">@Model.Name</h5>
-        <p class="card-text fs-4">@Model.Price$ - @Model.Category?.Name</p>
+        <p class="card-text fs-4">@Model.Price$ - @Model.CategoryName</p>
         <a href="#" class="btn btn-success my-3">Buy</a>
         <div class="image-block">
             <img src="@Model.ImageUrl" alt="Product Image" />

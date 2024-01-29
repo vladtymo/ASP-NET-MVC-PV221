@@ -1,4 +1,4 @@
-﻿@model Product;
+﻿@model ProductDto;
 <h1>Edit Product</h1>
 
 <form class="row g-3" method="post" asp-action="Edit">
@@ -36,7 +36,7 @@
 
     <div class="col-12">
         <div class="form-check">
-            <input asp-for=InStock checked class="form-check-input" type="checkbox">
+            <input asp-for=InStock class="form-check-input" type="checkbox">
             <label asp-for=InStock class="form-check-label">
                 In Stock
             </label>

@@ -1,9 +1,10 @@
-﻿using FluentValidation;
-using MVC_pv221.Data.Entities;
+﻿using BusinessLogic.DTOs;
+using DataAccess.Data.Entities;
+using FluentValidation;
 
-namespace MVC_pv221.Validators
+namespace BusinessLogic.Validators
 {
-    public class ProductValidator : AbstractValidator<Product>
+    public class ProductValidator : AbstractValidator<ProductDto>
     {
         public ProductValidator()
         {

@@ -1,7 +1,9 @@
 using FluentValidation.AspNetCore;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
-using MVC_pv221.Data;
+using DataAccess.Data;
+using AutoMapper;
+using BusinessLogic;
 
 namespace MVC_pv221
 {
@@ -17,11 +19,8 @@ namespace MVC_pv221
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext<ShopDbContext>(opts => opts.UseSqlServer(connStr));
 
-            builder.Services.AddFluentValidationAutoValidation();
-            // enable client-side validation
-            builder.Services.AddFluentValidationClientsideAdapters();
-            // Load an assembly reference rather than using a marker type.
-            builder.Services.AddValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
+            builder.Services.AddAutoMapper();
+            builder.Services.AddFluentValidators();
 
             var app = builder.Build();
 
