@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using DataAccess.Data;
 using AutoMapper;
 using BusinessLogic;
+using BusinessLogic.Services;
+using BusinessLogic.Interfaces;
 
 namespace MVC_pv221
 {
@@ -21,6 +23,8 @@ namespace MVC_pv221
 
             builder.Services.AddAutoMapper();
             builder.Services.AddFluentValidators();
+
+            builder.Services.AddScoped<IProductsService, ProductsService>();
 
             var app = builder.Build();
 
