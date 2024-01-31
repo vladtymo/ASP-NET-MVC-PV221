@@ -52,3 +52,10 @@ body {
     color: darkgray;
     text-decoration: underline;
 }
+
+.zoom {
+    transition: .2s;
+}
+.zoom:hover {
+    transform: scale(3.2);
+}
