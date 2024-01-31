@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using DataAccess.Data;
 using AutoMapper;
 using BusinessLogic;
+using DataAccess;
 using BusinessLogic.Services;
 using BusinessLogic.Interfaces;
 
@@ -14,17 +15,17 @@ namespace MVC_pv221
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            var connStr = builder.Configuration.GetConnectionString("LocalDb");
+            var connStr = builder.Configuration.GetConnectionString("LocalDb")!;
 
             // Add services to the container.
             // DI - Dependency Injection
             builder.Services.AddControllersWithViews();
-            builder.Services.AddDbContext<ShopDbContext>(opts => opts.UseSqlServer(connStr));
+            builder.Services.AddDbContext(connStr);
 
             builder.Services.AddAutoMapper();
             builder.Services.AddFluentValidators();
 
-            builder.Services.AddScoped<IProductsService, ProductsService>();
+            builder.Services.AddCustomServices();
 
             var app = builder.Build();
 
