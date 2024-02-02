@@ -5,6 +5,7 @@ namespace BusinessLogic.Interfaces
     public interface IProductsService
     {
         IEnumerable<ProductDto> GetAll();
+        IEnumerable<ProductDto> Get(IEnumerable<int> ids);
         ProductDto? Get(int id);
         IEnumerable<CategoryDto> GetAllCategories();
         void Create(ProductDto product);

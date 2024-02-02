@@ -74,6 +74,14 @@ namespace BusinessLogic.Services
             return dto;
         }
 
+        public IEnumerable<ProductDto> Get(IEnumerable<int> ids)
+        {
+            return mapper.Map<List<ProductDto>>(context.Products
+                .Include(x => x.Category)
+                .Where(x => ids.Contains(x.Id))
+                .ToList());
+        }
+
         public IEnumerable<ProductDto> GetAll()
         {
             return mapper.Map<List<ProductDto>>(context.Products.Include(x => x.Category).ToList());

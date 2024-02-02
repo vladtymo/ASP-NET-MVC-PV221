@@ -18,7 +18,7 @@
             @(Model.CategoryName ?? "category not loaded")
         </p>
         <div>
-            <button type="button" class="btn btn-primary mb-1">Add to Cart</button>
+            <a asp-controller="Cart" asp-action="Add" asp-route-id="@Model.Id" class="btn btn-primary mb-1">Add to Cart</a>
             <button type="button" class="btn btn-success mb-1">Buy Now</button>
         </div>
     </div>

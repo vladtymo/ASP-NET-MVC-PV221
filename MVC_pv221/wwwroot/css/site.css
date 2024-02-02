@@ -44,11 +44,11 @@ body {
     border-radius: 8px;
 }
 
-.home-card a {
+.home-card .card-title a {
     color: black;
     text-decoration: none;
 }
-.home-card a:hover {
+.home-card .card-title a:hover {
     color: darkgray;
     text-decoration: underline;
 }

@@ -1,0 +1,25 @@
+﻿@model List<ProductDto>;
+
+<div class="card text-center">
+    <div class="card-header">
+        My Cart
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">Product List</h5>
+        
+        <ul class="list-group">
+            @foreach (var i in Model)
+            {
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    @i.Name - @i.CategoryName
+                    <span class="badge bg-primary rounded-pill">@i.Price$</span>
+                </li>
+            }
+        </ul>
+            
+        <a href="#" class="btn btn-success mt-3">Confirm</a>
+    </div>
+    <div class="card-footer text-muted">
+        Items: @Model.Count
+    </div>
+</div>
