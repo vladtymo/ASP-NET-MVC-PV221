@@ -1,4 +1,6 @@
-﻿@model ProductDto;
+﻿@using BusinessLogic.Interfaces
+@model ProductDto;
+@inject ICartService cartService;
 
 @* <div class="text-start">
     <a href="@ViewBag.ReturnUrl" class="btn btn-dark my-3">Back</a>
@@ -21,7 +23,15 @@
         <h5 class="card-title fs-1">@Model.Name</h5>
         <p class="card-text fs-4">@Model.Price$ - @Model.CategoryName</p>
         <div>
-            <a asp-controller="Cart" asp-action="Add" asp-route-id="@Model.Id" class="btn btn-primary">Add to Cart</a>
+            @* TODO: optimize sending request using JS *@
+            @if(cartService.IsExists(Model.Id))
+            {
+                <a asp-controller="Cart" asp-action="Remove" asp-route-id="@Model.Id" asp-route-returnUrl="@Context.Request.Path" class="btn btn-secondary">Remove from Cart</a>
+            }
+            else
+            {
+                <a asp-controller="Cart" asp-action="Add" asp-route-id="@Model.Id" asp-route-returnUrl="@Context.Request.Path" class="btn btn-primary">Add to Cart</a>
+            }
             <a href="#" class="btn btn-success my-3">Buy</a>
         </div>
         <div class="image-block">

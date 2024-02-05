@@ -16,21 +16,22 @@ namespace MVC_pv221.Controllers
             this.cartService = cartService;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string returnUrl)
         {
+            ViewBag.ReturnUrl = returnUrl;
             return View(cartService.GetProducts());
         }
 
-        public IActionResult Add(int id)
+        public IActionResult Add(int id, string returnUrl)
         {
             cartService.Add(id);
-            return RedirectToAction(nameof(Index));
+            return Redirect(returnUrl);
         }
 
-        public IActionResult Remove(int id)
+        public IActionResult Remove(int id, string returnUrl)
         {
             cartService.Remove(id);
-            return RedirectToAction(nameof(Index));
+            return Redirect(returnUrl);
         }
     }
 }

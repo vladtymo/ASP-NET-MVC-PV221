@@ -49,5 +49,10 @@ namespace MVC_pv221.Services
         {
             return GetCartItems().Count;
         }
+
+        public bool IsExists(int id)
+        {
+            return GetCartItems().Contains(id);
+        }
     }
 }
