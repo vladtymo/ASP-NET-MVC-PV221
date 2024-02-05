@@ -8,6 +8,7 @@ using DataAccess;
 using BusinessLogic.Services;
 using BusinessLogic.Interfaces;
 using MVC_pv221.Services;
+using Microsoft.AspNetCore.Identity;
 
 namespace MVC_pv221
 {
@@ -22,6 +23,9 @@ namespace MVC_pv221
             // DI - Dependency Injection
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext(connStr);
+
+            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<ShopDbContext>();
 
             builder.Services.AddAutoMapper();
             builder.Services.AddFluentValidators();
@@ -57,6 +61,7 @@ namespace MVC_pv221
 
             app.UseSession();
 
+            app.MapRazorPages();
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");

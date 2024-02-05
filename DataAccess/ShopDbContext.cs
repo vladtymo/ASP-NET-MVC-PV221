@@ -1,9 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using DataAccess.Data.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace DataAccess.Data
 {
-    public class ShopDbContext : DbContext
+    public class ShopDbContext : IdentityDbContext
     {
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }

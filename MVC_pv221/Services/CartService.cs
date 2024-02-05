@@ -4,6 +4,7 @@ using BusinessLogic.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using MVC_pv221.Helpers;
+using Newtonsoft.Json.Linq;
 using System.Text.Json;
 
 namespace MVC_pv221.Services
@@ -20,8 +21,14 @@ namespace MVC_pv221.Services
             httpContext = contextAccessor.HttpContext ?? throw new Exception();
         }
 
-        private List<int> GetCartItems() => httpContext.Session.Get<List<int>>(key) ?? new();
-        private void SaveCartItems(List<int> items) => httpContext.Session.SetString(key, JsonSerializer.Serialize(items));
+        private List<int> GetCartItems()
+        {
+            return httpContext.Session.Get<List<int>>(key) ?? new();
+        }
+        private void SaveCartItems(List<int> items)
+        {
+            httpContext.Session.Set(key, items);
+        }
 
         public void Add(int id)
         {
