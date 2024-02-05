@@ -7,6 +7,7 @@ using BusinessLogic;
 using DataAccess;
 using BusinessLogic.Services;
 using BusinessLogic.Interfaces;
+using MVC_pv221.Services;
 
 namespace MVC_pv221
 {
@@ -26,6 +27,7 @@ namespace MVC_pv221
             builder.Services.AddFluentValidators();
 
             builder.Services.AddCustomServices();
+            builder.Services.AddScoped<ICartService, CartService>();
 
             builder.Services.AddDistributedMemoryCache();
 

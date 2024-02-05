@@ -9,33 +9,27 @@ namespace MVC_pv221.Controllers
 {
     public class CartController : Controller
     {
-        const string key = "cart_items_key";
-        private readonly IProductsService productsService;
+        private readonly ICartService cartService;
 
-        public CartController(IProductsService productsService)
+        public CartController(ICartService cartService)
         {
-            this.productsService = productsService;
+            this.cartService = cartService;
         }
 
         public IActionResult Index()
         {
-            var ids = HttpContext.Session.Get<List<int>>(key) ?? new();
-            return View(productsService.Get(ids));
+            return View(cartService.GetProducts());
         }
 
         public IActionResult Add(int id)
         {
-            var ids = HttpContext.Session.Get<List<int>>(key) ?? new();
-            ids.Add(id);
-
-            HttpContext.Session.SetString(key, JsonSerializer.Serialize(ids));
-
+            cartService.Add(id);
             return RedirectToAction(nameof(Index));
         }
 
         public IActionResult Remove(int id)
         {
-            // TODO
+            cartService.Remove(id);
             return RedirectToAction(nameof(Index));
         }
     }
