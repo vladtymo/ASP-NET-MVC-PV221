@@ -9,6 +9,7 @@ using BusinessLogic.Services;
 using BusinessLogic.Interfaces;
 using MVC_pv221.Services;
 using Microsoft.AspNetCore.Identity;
+using DataAccess.Data.Entities;
 
 namespace MVC_pv221
 {
@@ -24,7 +25,7 @@ namespace MVC_pv221
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext(connStr);
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ShopDbContext>();
 
             builder.Services.AddAutoMapper();

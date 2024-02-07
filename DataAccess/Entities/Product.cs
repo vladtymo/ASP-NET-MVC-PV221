@@ -13,5 +13,7 @@ namespace DataAccess.Data.Entities
         public string? Description { get; set; }
         public bool InStock { get; set; }
         public string ImageUrl { get; set; }
+
+        public ICollection<Order>? Orders { get; set; }
     }
 }

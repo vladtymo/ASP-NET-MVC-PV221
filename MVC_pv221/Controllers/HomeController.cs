@@ -10,13 +10,13 @@ namespace MVC_pv221.Controllers
 {
     public class HomeController : Controller
     {
-        private List<User> users = new();
+        private List<UserTest> users = new();
         private readonly IProductsService productsService;
 
         public HomeController(IProductsService productsService)
         {
-            users.Add(new User() { Id = 20, Login = "BlablaBob"});
-            users.Add(new User() { Id = 44, Login = "BlablaMax" });
+            users.Add(new UserTest() { Id = 20, Login = "BlablaBob"});
+            users.Add(new UserTest() { Id = 44, Login = "BlablaMax" });
 
             this.productsService = productsService;
         }
