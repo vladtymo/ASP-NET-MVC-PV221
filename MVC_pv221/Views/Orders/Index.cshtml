@@ -1,3 +1,18 @@
-﻿<h1>My Order History</h1>
+﻿@model IEnumerable<OrderDto>;
 
-<p>You have no orders yet!</p>
+<h1>My Order History</h1>
+
+@if(Model.Any())
+{
+    <ul class="list-group mt-4">
+        @foreach (var i in Model)
+        {
+            <li class="list-group-item">#@i.Id - @i.TotalPrice$ - @i.Date - @i.Products.Count()</li>
+        }
+    </ul>
+}
+else
+{
+    <p>You have no orders yet!</p>
+    <a asp-controller="Home" class="btn btn-primary mt-2">Start Shopping</a>
+}

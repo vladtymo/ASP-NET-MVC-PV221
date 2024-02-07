@@ -17,7 +17,12 @@
             }
         </ul>
             
-        <a href="#" class="btn btn-success mt-3">Confirm</a>
+        <div>
+            <a asp-controller="Orders" asp-action="Create" class="btn btn-success mt-3">Confirm</a>
+        </div>
+        <div>
+            <a asp-controller="Home" class="btn btn-primary mt-2">Continue Shopping</a>
+        </div>
     </div>
     <div class="card-footer text-muted">
         Items: @Model.Count

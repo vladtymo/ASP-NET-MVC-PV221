@@ -61,5 +61,10 @@ namespace MVC_pv221.Services
         {
             return GetCartItems().Contains(id);
         }
+
+        public IEnumerable<int> GetProductIds()
+        {
+            return GetCartItems();
+        }
     }
 }
