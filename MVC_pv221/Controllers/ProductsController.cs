@@ -3,12 +3,14 @@ using BusinessLogic.DTOs;
 using BusinessLogic.Interfaces;
 using DataAccess.Data;
 using DataAccess.Data.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace MVC_pv221.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ProductsController : Controller
     {
         private readonly IProductsService productsService;
@@ -29,10 +31,22 @@ namespace MVC_pv221.Controllers
             ViewBag.Categories = new SelectList(categories, nameof(Category.Id), nameof(Category.Name));
         }
 
+        [AllowAnonymous]
         public IActionResult Index()
         {
             // get all products from the db
             return View(productsService.GetAll());
+        }
+
+        [AllowAnonymous]
+        public IActionResult Details(int id, string? returnUrl)
+        {
+            // get product by ID from the db
+            var product = productsService.Get(id);
+            if (product == null) return NotFound();
+
+            ViewBag.ReturnUrl = returnUrl;
+            return View(product);
         }
 
         public IActionResult Create()
@@ -75,16 +89,6 @@ namespace MVC_pv221.Controllers
 
             productsService.Edit(model);
             return RedirectToAction(nameof(Index));
-        }
-
-        public IActionResult Details(int id, string? returnUrl)
-        {
-            // get product by ID from the db
-            var product = productsService.Get(id);
-            if (product == null) return NotFound();
-           
-            ViewBag.ReturnUrl = returnUrl;
-            return View(product);
         }
 
         public IActionResult Delete(int id)

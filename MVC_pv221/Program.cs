@@ -10,6 +10,7 @@ using BusinessLogic.Interfaces;
 using MVC_pv221.Services;
 using Microsoft.AspNetCore.Identity;
 using DataAccess.Data.Entities;
+using MVC_pv221.Helpers;
 
 namespace MVC_pv221
 {
@@ -25,7 +26,12 @@ namespace MVC_pv221
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext(connStr);
 
-            builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
+            builder.Services.AddIdentity<User, IdentityRole>(options =>
+            {
+                options.SignIn.RequireConfirmedAccount = false;
+            })
+                .AddDefaultTokenProviders()
+                .AddDefaultUI()
                 .AddEntityFrameworkStores<ShopDbContext>();
 
             builder.Services.AddAutoMapper();
@@ -44,6 +50,13 @@ namespace MVC_pv221
             });
 
             var app = builder.Build();
+
+            // insert initial roles and admin user
+            using (var scope = app.Services.CreateScope())
+            {
+                Seeder.SeedRoles(scope.ServiceProvider).Wait();
+                Seeder.SeedAdmin(scope.ServiceProvider).Wait();
+            }
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())

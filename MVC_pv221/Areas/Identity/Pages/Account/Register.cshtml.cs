@@ -19,6 +19,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using MVC_pv221.Helpers;
 
 namespace MVC_pv221.Areas.Identity.Pages.Account
 {
@@ -103,6 +104,9 @@ namespace MVC_pv221.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            [Display(Name = "Admin User")]
+            public bool AdminUser { get; set; }
         }
 
 
@@ -129,6 +133,11 @@ namespace MVC_pv221.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
+
+                    if (User.IsInRole("Admin") && Input.AdminUser)
+                        await _userManager.AddToRoleAsync(user, Roles.Admin.ToString());
+                    else
+                        await _userManager.AddToRoleAsync(user, Roles.User.ToString());
 
                     var userId = await _userManager.GetUserIdAsync(user);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
