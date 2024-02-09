@@ -25,12 +25,18 @@ namespace MVC_pv221.Controllers
         public IActionResult Add(int id, string returnUrl)
         {
             cartService.Add(id);
+
+            //ViewBag.ToastMessage = "Product added to your cart successfully!";
+            TempData["ToastMessage"] = "Product added to your cart successfully!";
+
             return Redirect(returnUrl);
         }
 
         public IActionResult Remove(int id, string returnUrl)
         {
             cartService.Remove(id);
+            TempData["ToastMessage"] = "Product removed from your cart successfully!";
+
             return Redirect(returnUrl);
         }
     }

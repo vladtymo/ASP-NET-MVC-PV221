@@ -1,0 +1,23 @@
+﻿<div class="prevent-select position-fixed bottom-0 start-50 translate-middle-x p-3" style="z-index: 11">
+    <div data-bs-delay="2000" id="generalToast" class="toast text-white bg-success" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-body text-center"></div>
+    </div>
+</div>
+
+
+@{
+    string? toastMsg = TempData["ToastMessage"] as string;
+}
+
+@if (toastMsg != null)
+{
+    <script>
+        var generalToast = document.getElementById('generalToast');
+
+        // set toast message
+        generalToast.querySelector('.toast-body').textContent = "@toastMsg";
+
+            var toast = new bootstrap.Toast(generalToast);
+            toast.show();
+    </script>
+}
