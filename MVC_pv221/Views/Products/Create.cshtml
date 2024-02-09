@@ -1,7 +1,7 @@
-﻿@model ProductDto;
+﻿@model CreateProductModel;
 <h1>Create New Product</h1>
 
-<form class="row g-3" method="post" asp-action="Create">
+<form class="row g-3" method="post" enctype="multipart/form-data" asp-action="Create">
     <div class="col-md-12">
         <label asp-for=Name class="form-label">Name</label>
         <input asp-for=Name type="text" class="form-control" placeholder="Enter name">
@@ -24,9 +24,9 @@
         </select>
     </div>
     <div class="col-12">
-        <label asp-for=ImageUrl class="form-label">Image URL</label>
-        <input asp-for=ImageUrl type="url" class="form-control" placeholder="Enter image URL">
-        <span asp-validation-for="ImageUrl" class="form-text text-danger"></span>
+        <label asp-for=Image class="form-label">Image URL</label>
+        <input asp-for=Image type="file" class="form-control" placeholder="Enter image URL">
+        <span asp-validation-for="Image" class="form-text text-danger"></span>
     </div>
     <div class="col-12">
         <label asp-for=Description class="form-label">Description</label>

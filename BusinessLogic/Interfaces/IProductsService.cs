@@ -8,7 +8,7 @@ namespace BusinessLogic.Interfaces
         IEnumerable<ProductDto> Get(IEnumerable<int> ids);
         ProductDto? Get(int id);
         IEnumerable<CategoryDto> GetAllCategories();
-        void Create(ProductDto product);
+        void Create(CreateProductModel product);
         void Edit(ProductDto product);
         void Delete(int id);
     }

@@ -1,4 +1,6 @@
-﻿using BusinessLogic.Interfaces;
+﻿using AutoMapper;
+using BusinessLogic.Interfaces;
+using BusinessLogic.Profiles;
 using BusinessLogic.Services;
 using FluentValidation;
 using FluentValidation.AspNetCore;
@@ -10,7 +12,11 @@ namespace BusinessLogic
     {
         public static void AddAutoMapper(this IServiceCollection services)
         {
-            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            //services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddSingleton(provider => new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new ApplicationProfile(provider.CreateScope().ServiceProvider.GetService<IFileService>()!));
+            }).CreateMapper());
         }
 
         public static void AddFluentValidators(this IServiceCollection services)
@@ -26,6 +32,7 @@ namespace BusinessLogic
         {
             services.AddScoped<IProductsService, ProductsService>();
             services.AddScoped<IOrdersService, OrdersService>();
+            services.AddScoped<IFileService, LocalFileService>();
         }
     }
 }

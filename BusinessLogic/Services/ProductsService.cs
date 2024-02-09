@@ -23,7 +23,7 @@ namespace BusinessLogic.Services
             this.context = context;
         }
 
-        public void Create(ProductDto product)
+        public void Create(CreateProductModel product)
         {
             context.Products.Add(mapper.Map<Product>(product));
             context.SaveChanges();

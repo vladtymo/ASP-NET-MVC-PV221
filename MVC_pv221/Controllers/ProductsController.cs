@@ -56,7 +56,7 @@ namespace MVC_pv221.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(ProductDto model)
+        public IActionResult Create(CreateProductModel model)
         {
             // model validation
             if (!ModelState.IsValid) 
