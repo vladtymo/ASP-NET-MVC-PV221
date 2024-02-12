@@ -30,7 +30,7 @@
     </div>
     <div class="col-12">
         <label asp-for=Description class="form-label">Description</label>
-        <textarea asp-for=Description class="form-control" rows="3" placeholder="Enter description"></textarea>
+        <textarea id="description-input" asp-for=Description class="form-control" rows="3" placeholder="Enter description"></textarea>
         <span asp-validation-for="Description" class="form-text text-danger"></span>
     </div>
 
@@ -50,3 +50,7 @@
         <button type="submit" class="btn btn-success w-100">Create New Product</button>
     </div>
 </form>
+
+@section Scripts {
+    <partial name="_FroalaEditorPartial.cshtml" model='new { Selector = "#description-input"}' />
+}
