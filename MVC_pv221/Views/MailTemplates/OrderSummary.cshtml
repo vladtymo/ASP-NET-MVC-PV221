@@ -1,0 +1,32 @@
+﻿@model OrderSummaryModel;
+@{
+    Layout = "~/Views/Shared/_MailLayout.cshtml";
+}
+
+<h1>Order #@Model.Number Summary</h1>
+<hr />
+<p>User: <span>@Model.UserName</span></p>
+<ul class="list-group">
+    @foreach (var item in Model.Products)
+    {
+        <li class="list-group-item">@item.Name @item.Price$</li>
+    }
+</ul>
+
+<p>Total Price: <span>@Model.TotalPrice</span>$</p>
+
+@section Styles {
+    <style>
+        ul {
+            padding: 0;
+            margin: 0;
+        }
+        li {
+            background-color: darkseagreen;
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 2px;
+        }
+    </style>
+}

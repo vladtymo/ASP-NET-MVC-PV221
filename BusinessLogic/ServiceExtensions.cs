@@ -4,6 +4,7 @@ using BusinessLogic.Profiles;
 using BusinessLogic.Services;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BusinessLogic
@@ -33,6 +34,7 @@ namespace BusinessLogic
             services.AddScoped<IProductsService, ProductsService>();
             services.AddScoped<IOrdersService, OrdersService>();
             services.AddScoped<IFileService, LocalFileService>();
+            services.AddScoped<IEmailSender, MailJetSender>();
         }
     }
 }

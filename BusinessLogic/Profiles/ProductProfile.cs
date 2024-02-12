@@ -23,6 +23,10 @@ namespace BusinessLogic.Profiles
 
             CreateMap<CreateProductModel, Product>()
                 .ForMember(x => x.ImageUrl, opt => opt.MapFrom(src => fileService.SaveProductImage(src.Image).Result));
+
+            CreateMap<Order, OrderSummaryModel>()
+                .ForMember(x => x.Number, opts => opts.MapFrom(src => src.Id))
+                .ForMember(x => x.UserName, opts => opts.MapFrom(src => src.User.UserName));
         }
     }
 }

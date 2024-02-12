@@ -39,6 +39,7 @@ namespace MVC_pv221
 
             builder.Services.AddCustomServices();
             builder.Services.AddScoped<ICartService, CartService>();
+            builder.Services.AddScoped<IViewRender, ViewRender>();
 
             builder.Services.AddDistributedMemoryCache();
 

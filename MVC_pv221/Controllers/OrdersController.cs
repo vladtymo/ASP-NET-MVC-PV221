@@ -21,9 +21,9 @@ namespace MVC_pv221.Controllers
             return View(ordersService.GetAllByUser(UserId));
         }
 
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            ordersService.Create(UserId);
+            await ordersService.Create(UserId);
             TempData["ToastMessage"] = "Order confirmed successfully!";
 
             return RedirectToAction(nameof(Index));
